@@ -62,4 +62,15 @@ dependencies {
     //DataBinding
     kapt ("com.android.databinding:compiler:3.2.0-alpha10")
 
+    // Room components
+    implementation ("androidx.room:room-runtime:2.5.1")
+    kapt ("androidx.room:room-compiler:2.5.1")
+    implementation ("androidx.room:room-ktx:2.5.1")
+    androidTestImplementation ("androidx.room:room-testing:2.5.1")
+
+    //Retrofit
+    implementation ("com.squareup.retrofit2:retrofit:2.9.0")
+    implementation ("com.squareup.retrofit2:converter-gson:2.9.0")
+    implementation ("com.squareup.retrofit2:adapter-rxjava2:2.9.0")
+
 }
