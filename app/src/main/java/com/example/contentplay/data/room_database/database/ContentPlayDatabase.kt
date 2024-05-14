@@ -4,9 +4,14 @@ import android.content.Context
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
+import androidx.room.TypeConverter
+import androidx.room.TypeConverters
+import com.example.contentplay.data.model.MoviesModel
+import com.example.contentplay.data.room_database.converters.MovieDataConverter
 import com.example.contentplay.data.room_database.dao.ContentPlayDAO
 
-@Database(entities = [], version = 1, exportSchema = false)
+@Database(entities = [MoviesModel::class], version = 1, exportSchema = false)
+@TypeConverters(MovieDataConverter::class)
 abstract class ContentPlayDatabase: RoomDatabase(){
 
     abstract fun contentPlayDao(): ContentPlayDAO
