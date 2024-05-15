@@ -21,7 +21,7 @@ abstract class ContentPlayDatabase: RoomDatabase(){
         @Volatile
         private  var INSTANCE: ContentPlayDatabase? = null
 
-        fun getDatabase( context: Context) : ContentPlayDatabase {
+        fun getDatabase(context: Context) : ContentPlayDatabase {
             val tempInstance = INSTANCE
             if(tempInstance != null) {
                 return tempInstance

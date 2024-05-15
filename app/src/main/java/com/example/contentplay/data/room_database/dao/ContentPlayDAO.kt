@@ -20,4 +20,7 @@ interface ContentPlayDAO {
     @Query("SELECT * FROM movies_table WHERE genres LIKE :query")
     fun readAllMoviesFromDBWithSearch(query: String): LiveData<List<MoviesModel>>
 
+    @Query("DELETE FROM movies_table")
+    suspend fun deleteMoviesDataFromDB()
+
 }
