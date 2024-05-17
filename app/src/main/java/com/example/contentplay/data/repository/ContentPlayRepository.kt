@@ -11,7 +11,7 @@ class ContentPlayRepository(database: ContentPlayDatabase) {
 
     private val contentPlayDAO = database.contentPlayDao()
 
-    suspend fun addMovieDataToDB(movies: List<MoviesModel>) {
+    suspend fun addMovieDataToDB(movies: MoviesModel) {
         contentPlayDAO.addMovieDataToDB(movies)
     }
 

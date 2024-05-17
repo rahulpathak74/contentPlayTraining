@@ -1,3 +1,5 @@
+import org.gradle.api.internal.DocumentationRegistry.BASE_URL
+
 plugins {
     id("com.android.application")
     id("org.jetbrains.kotlin.android")
@@ -8,12 +10,20 @@ android {
     namespace = "com.example.contentplay"
     compileSdk = 34
 
+    buildFeatures{
+        buildConfig = true
+    }
+
     defaultConfig {
         applicationId = "com.example.contentplay"
         minSdk = 23
         targetSdk = 34
         versionCode = 1
         versionName = "1.0"
+
+
+
+        buildConfigField("String", "BASE_URL","${properties[BASE_URL]}")
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
@@ -63,10 +73,10 @@ dependencies {
     kapt ("com.android.databinding:compiler:3.2.0-alpha10")
 
     // Room components
-    implementation ("androidx.room:room-runtime:2.5.1")
-    kapt ("androidx.room:room-compiler:2.5.1")
-    implementation ("androidx.room:room-ktx:2.5.1")
-    androidTestImplementation ("androidx.room:room-testing:2.5.1")
+    implementation ("androidx.room:room-runtime:2.4.2")
+    kapt ("androidx.room:room-compiler:2.4.2")
+    implementation ("androidx.room:room-ktx:2.4.2")
+    androidTestImplementation ("androidx.room:room-testing:2.4.2")
 
     //Retrofit
     implementation ("com.squareup.retrofit2:retrofit:2.9.0")

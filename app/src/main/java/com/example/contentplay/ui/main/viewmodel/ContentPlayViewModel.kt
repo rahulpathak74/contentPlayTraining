@@ -32,6 +32,8 @@ class ContentPlayViewModel(private var repository: ContentPlayRepository): ViewM
             if(response.isSuccessful && response.body() != null) {
                 Log.d(TAG, response.body().toString())
                 moviesData.value = response.body()
+            } else {
+                Log.e(TAG, "Response not successful")
             }
         }
     }

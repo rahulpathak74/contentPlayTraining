@@ -1,5 +1,6 @@
 package com.example.contentplay.data.api
 
+import com.example.contentplay.BuildConfig
 import com.example.contentplay.utils.AppConstants
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
@@ -36,7 +37,7 @@ class RetrofitInstance {
                 .build()
 
             Retrofit.Builder()
-                .baseUrl(AppConstants.BASE_URL)
+                .baseUrl(BuildConfig.BASE_URL)
                 .client(client)
                 .addConverterFactory(GsonConverterFactory.create())
                 .build()
