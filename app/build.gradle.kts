@@ -4,6 +4,7 @@ plugins {
     id("com.android.application")
     id("org.jetbrains.kotlin.android")
     id("kotlin-kapt")
+    id("com.google.android.libraries.mapsplatform.secrets-gradle-plugin")
 }
 
 android {
@@ -20,10 +21,6 @@ android {
         targetSdk = 34
         versionCode = 1
         versionName = "1.0"
-
-
-
-        buildConfigField("String", "BASE_URL","${properties[BASE_URL]}")
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }

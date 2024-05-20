@@ -31,6 +31,10 @@
         <meta-data
             android:name="android.app.lib_name"
             android:value="" />
+
+        <meta-data
+            android:name="BASE_URL"
+            android:value="${BASE_URL}" />
     </activity>
     </application>
 
