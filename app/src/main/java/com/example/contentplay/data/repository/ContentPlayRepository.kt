@@ -6,12 +6,15 @@ import com.example.contentplay.data.model.MoviesModel
 import com.example.contentplay.data.model.MoviesModelAPI
 import com.example.contentplay.data.room_database.database.ContentPlayDatabase
 import retrofit2.Response
+import javax.inject.Inject
 
 class ContentPlayRepository(database: ContentPlayDatabase) {
 
     private val contentPlayDAO = database.contentPlayDao()
+    @Inject
+    lateinit var retrofitInstance: RetrofitInstance
 
-    suspend fun addMovieDataToDB(movies: MoviesModel) {
+    suspend fun addMovieDataToDB(movies: List<MoviesModel>) {
         contentPlayDAO.addMovieDataToDB(movies)
     }
 
@@ -28,7 +31,7 @@ class ContentPlayRepository(database: ContentPlayDatabase) {
     }
 
     suspend fun getContentFromServer(): Response<List<MoviesModelAPI>> {
-       return RetrofitInstance.apiInterface.getContentFromServer()
+       return retrofitInstance.readDataFromServer()
     }
 
 }

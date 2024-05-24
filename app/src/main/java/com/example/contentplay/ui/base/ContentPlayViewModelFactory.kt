@@ -5,6 +5,7 @@ import androidx.lifecycle.ViewModelProvider
 import com.example.contentplay.data.repository.ContentPlayRepository
 import com.example.contentplay.ui.main.viewmodel.ContentPlayViewModel
 
+@Suppress("UNCHECKED_CAST")
 class ContentPlayViewModelFactory(
     private val repository: ContentPlayRepository)
     :ViewModelProvider.Factory {

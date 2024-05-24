@@ -9,11 +9,6 @@ import retrofit2.http.Path
 
 interface ContentPlayApiInterface {
 
-    @GET("/test/endpoint.json")
+    @GET("/api/v1/movies")
     suspend fun getContentFromServer(): Response<List<MoviesModelAPI>>
-
-    @GET("/test/endpoint2_{songName}.json")
-    suspend fun getTheAudioFileForSearchedSong(@Path("songName") songName: String) : Response<MoviesModelAPI>
-
-    // Upcoming Sessions - > DI (later) -> Call API in repository and view model -> Make API call and show data in RecyclerView
 }

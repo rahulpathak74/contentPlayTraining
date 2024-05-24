@@ -2,6 +2,7 @@ package com.example.contentplay.ui.main.view.fragments
 
 import android.content.Context
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -11,6 +12,7 @@ import com.example.contentplay.data.repository.ContentPlayRepository
 import com.example.contentplay.data.room_database.database.ContentPlayDatabase
 import com.example.contentplay.ui.base.ContentPlayViewModelFactory
 import com.example.contentplay.ui.main.viewmodel.ContentPlayViewModel
+import com.example.contentplay.utils.AppConstants.TAG
 import com.example.contentplay.utils.LiveNetworkChecker
 
 class ContentPlayMainFragment: Fragment() {
@@ -31,27 +33,27 @@ class ContentPlayMainFragment: Fragment() {
             val factory = ContentPlayViewModelFactory(repository)
             contentPlayViewModel = ViewModelProvider(this, factory)[ContentPlayViewModel::class.java]
         }
-
-        LiveNetworkChecker.init(requireActivity().application)
-        if(!LiveNetworkChecker.hasObservers()) {
-            LiveNetworkChecker.observe(viewLifecycleOwner) { isAvailable ->
-             if(isAvailable) {
-                 contentPlayViewModel.getContentFromServer()
-             }
-            }
-        }
-        observe()
         return super.onCreateView(inflater, container, savedInstanceState)
 
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        LiveNetworkChecker.init(requireActivity().application)
+        if(!LiveNetworkChecker.hasObservers()) {
+            LiveNetworkChecker.observe(viewLifecycleOwner) { isAvailable ->
+                if(isAvailable) {
+                    contentPlayViewModel.getContentFromServer()
+                }
+            }
+        }
+        observe()
     }
 
     private fun observe() {
         contentPlayViewModel.moviesDataLiveData.observe(viewLifecycleOwner) {
-            // Show same data in UI
+            Log.d(TAG, it.toString())
         }
     }
 }

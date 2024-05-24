@@ -12,7 +12,7 @@ interface ContentPlayDAO {
 
     // Insert movie data in database
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    fun addMovieDataToDB(movies: MoviesModel): Long
+    fun addMovieDataToDB(movies: List<MoviesModel>)
 
     @Query("SELECT * FROM movies_table")
     fun readAllMoviesFromDB(): LiveData<List<MoviesModel>>

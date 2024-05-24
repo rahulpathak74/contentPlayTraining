@@ -81,4 +81,10 @@ dependencies {
     implementation ("com.squareup.retrofit2:adapter-rxjava2:2.9.0")
     implementation ("com.squareup.okhttp3:logging-interceptor:3.9.0")
 
+    //Dependency injection
+    implementation ("com.google.dagger:dagger:2.14")
+    implementation ("com.google.dagger:dagger-android-support:2.14")
+    kapt ("com.google.dagger:dagger-compiler:2.14")
+    kapt ("com.google.dagger:dagger-android-processor:2.14")
+
 }
