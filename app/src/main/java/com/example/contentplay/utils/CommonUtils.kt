@@ -1,5 +1,6 @@
 package com.example.contentplay.utils
 
+import com.example.contentplay.data.model.MoviesModel
 import com.example.contentplay.data.model.MoviesModelAPI
 
 object CommonUtils {
@@ -35,4 +36,7 @@ object CommonUtils {
         MoviesModelAPI(21, "Loader", "Action Movie with lots of superhero shots and amazing cast", "", ""),
         MoviesModelAPI(22, "Data", "Action Movie with lots of superhero shots and amazing cast", "", ""),
     )
+
+    var contentArrayListDB: MoviesModel =
+        MoviesModel(1, "Iron Man", "Action Movie with lots of superhero shots and amazing cast", "", "")
 }

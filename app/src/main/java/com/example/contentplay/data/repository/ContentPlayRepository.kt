@@ -14,8 +14,8 @@ class ContentPlayRepository(database: ContentPlayDatabase) {
     @Inject
     lateinit var retrofitInstance: RetrofitInstance
 
-    suspend fun addMovieDataToDB(movies: List<MoviesModel>) {
-        contentPlayDAO.addMovieDataToDB(movies)
+    suspend fun addMovieDataToDB(movies: MoviesModel): Long {
+        return contentPlayDAO.addMovieDataToDB(movies)
     }
 
     fun readAllMoviesFromDB(): LiveData<List<MoviesModel>> {
@@ -26,8 +26,8 @@ class ContentPlayRepository(database: ContentPlayDatabase) {
         return contentPlayDAO.readAllMoviesFromDBWithSearch(query)
     }
 
-    suspend fun deleteMoviesDataFromDB() {
-        contentPlayDAO.deleteMoviesDataFromDB()
+    suspend fun deleteMoviesDataFromDB(): Int {
+       return contentPlayDAO.deleteMoviesDataFromDB()
     }
 
     suspend fun getContentFromServer(): Response<List<MoviesModelAPI>> {

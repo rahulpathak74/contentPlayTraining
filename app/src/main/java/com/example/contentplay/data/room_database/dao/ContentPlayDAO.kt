@@ -12,7 +12,7 @@ interface ContentPlayDAO {
 
     // Insert movie data in database
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    fun addMovieDataToDB(movies: List<MoviesModel>)
+    fun addMovieDataToDB(movies: MoviesModel): Long
 
     @Query("SELECT * FROM movies_table")
     fun readAllMoviesFromDB(): LiveData<List<MoviesModel>>
@@ -21,6 +21,6 @@ interface ContentPlayDAO {
     fun readAllMoviesFromDBWithSearch(query: String): LiveData<List<MoviesModel>>
 
     @Query("DELETE FROM movies_table")
-    fun deleteMoviesDataFromDB()
+    fun deleteMoviesDataFromDB(): Int
 
 }

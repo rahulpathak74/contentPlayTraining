@@ -12,8 +12,8 @@ data class MoviesModel(
     val movieDescription: String,
     val movieThumbnail: String,
     val videoURL: String,
-    @TypeConverters(MovieDataConverter::class) val genres: List<String>,
-    @TypeConverters(MovieDataConverter::class) val movieCast: List<String>
+    @TypeConverters(MovieDataConverter::class) val genres: List<String>? = arrayListOf(),
+    @TypeConverters(MovieDataConverter::class) val movieCast: List<String>? = arrayListOf()
 )
 
 /*
