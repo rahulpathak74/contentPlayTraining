@@ -13,6 +13,7 @@ android {
 
     buildFeatures{
         buildConfig = true
+        dataBinding = true
     }
 
     defaultConfig {
@@ -52,6 +53,12 @@ dependencies {
     androidTestImplementation("androidx.test.ext:junit:1.1.5")
     androidTestImplementation("androidx.test.espresso:espresso-core:3.5.1")
 
+    testImplementation ("org.mockito:mockito-core:3.3.3")
+    testImplementation ("org.mockito:mockito-core:3.12.4")
+    testImplementation ("org.mockito:mockito-inline:3.12.4")
+    testImplementation ("androidx.arch.core:core-testing:2.1.0")
+    testImplementation ("org.jetbrains.kotlinx:kotlinx-coroutines-test:1.3.4")
+
     // test dependencies
     testImplementation ("junit:junit:4.13.2")
     androidTestImplementation ("androidx.test.ext:junit:1.1.5")
@@ -86,5 +93,9 @@ dependencies {
     implementation ("com.google.dagger:dagger-android-support:2.14")
     kapt ("com.google.dagger:dagger-compiler:2.14")
     kapt ("com.google.dagger:dagger-android-processor:2.14")
+
+    //Glide Image Loading
+    implementation ("com.github.bumptech.glide:glide:4.12.0")
+
 
 }

@@ -4,43 +4,60 @@ import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 import com.example.contentplay.R
 import com.example.contentplay.data.model.MoviesModelAPI
+import com.example.contentplay.databinding.CardMoviesItemBinding
+import com.example.contentplay.ui.main.adapter.diffutil.ContentListDiffUtilCallback
+import java.lang.Exception
 
 class ContentListingAdapter (
     private var contentArrayList: ArrayList<MoviesModelAPI>
-) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
+) : RecyclerView.Adapter<ContentListingAdapter.ContentPlayViewHolder>() {
 
-    class MyViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView)
+    private lateinit var mBinding: CardMoviesItemBinding
 
     private lateinit var context: Context
-    private var query: String = ""
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ContentPlayViewHolder {
         context = parent.context
-        return MyViewHolder(
-            LayoutInflater.from(parent.context)
-                .inflate(R.layout.card_movies_item, parent, false)
-        )
+        mBinding =  CardMoviesItemBinding.inflate(
+            LayoutInflater.from(parent.context), parent, false)
+        return ContentPlayViewHolder(mBinding)
+    }
+
+    override fun onBindViewHolder(holder: ContentPlayViewHolder, position: Int) {
+        val content = contentArrayList[position]
+
+        holder.bind(content)
+
+        //Glide library to load images into ImageView
+        Glide
+            .with(mBinding.movieImage)
+            .load(content.movieThumbnail)
+            .placeholder(R.drawable.ic_launcher_background) //Placeholder image if poster-image value is empty
+            .into(mBinding.movieImage)
     }
 
     fun updatedListFromDatabase(filterList: ArrayList<MoviesModelAPI>) {
-
+        try {
+            val diffUtilCallback = ContentListDiffUtilCallback(this.contentArrayList, filterList)
+            val diffCalculation  = DiffUtil.calculateDiff(diffUtilCallback)
+            contentArrayList.clear()
+            contentArrayList.addAll(filterList)
+            diffCalculation.dispatchUpdatesTo(this)
+        } catch (e: Exception) {
+            e.printStackTrace()
+        }
     }
-
-    override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
-        val content = contentArrayList[position]
-
-        //Glide library to load images into Imageviews
-//        Glide
-//            .with(movieImage)
-//            .load(posterImageDrawableHelper(content))
-//            .placeholder(R.drawable.placeholder_for_missing_posters) //Placeholder image if poster-image value is empty
-//            .into(movieImage)
-
-    }
-
 
     override fun getItemCount() = contentArrayList.size
+
+   inner class ContentPlayViewHolder(binding: CardMoviesItemBinding): RecyclerView.ViewHolder(binding.root) {
+        fun bind(modelAPI: MoviesModelAPI) {
+           mBinding.contentPlayModel = modelAPI
+        }
+    }
 }

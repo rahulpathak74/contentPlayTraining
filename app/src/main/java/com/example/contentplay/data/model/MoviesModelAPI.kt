@@ -9,6 +9,6 @@ data class MoviesModelAPI(
     @SerializedName("") val movieDescription: String,
     @SerializedName("")  val movieThumbnail: String,
     @SerializedName("") val videoURL: String,
-    @SerializedName("") val genres: List<String>,
-    @SerializedName("") val movieCast: List<String>
+    @SerializedName("") val genres: List<String>? = arrayListOf(),
+    @SerializedName("") val movieCast: List<String>? = arrayListOf()
 )
